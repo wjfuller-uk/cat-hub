@@ -40,6 +40,8 @@ enum class CatState {
 
     /** Greeting / arrival — wave animation */
     WAVING,
+    /** User is speaking — ears up, green glow */
+    LISTENING,
 }
 
 /**

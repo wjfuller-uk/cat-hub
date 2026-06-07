@@ -257,6 +257,25 @@ fun CatView(
                         )
                     }
                 }
+                CatState.LISTENING -> {
+                    // Green glow around cat when listening
+                    drawCircle(
+                        color = Color(0xFF4CAF50).copy(alpha = 0.3f),
+                        radius = 16 * scale,
+                        center = Offset(centerX, centerY - 8 * scale + offsetY),
+                    )
+                    // Ears up indicator
+                    drawCircle(
+                        color = Color(0xFF4CAF50).copy(alpha = 0.6f),
+                        radius = 2 * scale,
+                        center = Offset(centerX - 6 * scale, centerY - 22 * scale + offsetY),
+                    )
+                    drawCircle(
+                        color = Color(0xFF4CAF50).copy(alpha = 0.6f),
+                        radius = 2 * scale,
+                        center = Offset(centerX + 6 * scale, centerY - 22 * scale + offsetY),
+                    )
+                }
                 CatState.TALKING -> {
                     // Speech bubble indicator
                     drawCircle(
@@ -321,3 +340,5 @@ private fun Modifier.clickable(onClick: () -> Unit): Modifier {
 }
 
 private fun cos(radians: Double): Double = kotlin.math.cos(radians)
+
+// Add LISTENING state handling - insert after EXCITED block in when statement

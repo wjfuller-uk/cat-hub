@@ -76,6 +76,10 @@ dependencies {
 
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
+    // Porcupine (wake word)
+    implementation("ai.picovoice:porcupine-android:1.9.5")
+    // Gson (JSON parsing)
+    implementation("com.google.code.gson:gson:2.11.0")
 
     // Debug
     debugImplementation("androidx.compose.ui:ui-tooling")
