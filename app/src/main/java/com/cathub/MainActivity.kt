@@ -93,6 +93,7 @@ fun CatHubScreen(onStartVoice: () -> Unit) {
     // Wire up voice callbacks
     LaunchedEffect(Unit) {
         VoiceService.onWakeWord = {
+            voiceActive = true
             isListening = true
             transcript = ""
             responseText = ""
@@ -108,6 +109,7 @@ fun CatHubScreen(onStartVoice: () -> Unit) {
         VoiceService.onSpeakingChanged = { speaking ->
             isSpeaking = speaking
             if (!speaking) {
+                voiceActive = false
                 // Reset after speaking
                 isListening = false
             }
@@ -227,7 +229,7 @@ fun CatHubScreen(onStartVoice: () -> Unit) {
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp)
                     .clickable {
-                        if (!VoiceService.isActive) {
+                        if (!voiceActive) {
                             onStartVoice()
                         }
                     },
@@ -246,7 +248,7 @@ fun CatHubScreen(onStartVoice: () -> Unit) {
                         text = when {
                             isListening -> "🎤 Listening..."
                             isSpeaking -> "🔊 Speaking..."
-                            VoiceService.isActive -> "💤 Say \"Jarvis...\""
+                            voiceActive -> "💤 Say \"Jarvis...\""
                             else -> "🎤 Tap to start"
                         },
                         color = Color.White.copy(alpha = 0.9f),
