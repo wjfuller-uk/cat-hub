@@ -40,6 +40,12 @@
             </intent-filter>
         </activity>
 
+        <!-- Voice service (wake word + audio streaming) -->
+        <service
+            android:name=".voice.VoiceService"
+            android:exported="false"
+            android:foregroundServiceType="microphone" />
+
         <!-- Boot receiver for auto-start -->
         <receiver
             android:name=".kiosk.BootReceiver"
